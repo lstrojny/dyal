@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowJs": false,
+    "allowUnreachableCode": false,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "module": "es6",
+    "lib": [
+      "es5",
+      "es2015.promise",
+      "dom"
+    ],
+    "outDir": "dist/"
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <script src="/dist/loader.js" nonce="SCRIPT"></script>
+    <meta http-equiv="content-security-policy" content="default-src 'nonce-STYLENONCE'; script-src 'nonce-SCRIPTNONCE'"/>
+    <script nonce="SCRIPTNONCE">
+        Promise.all([
+            IL.js('/test/1.js')
+                .crossOrigin('anonymous')
+                .integrity('sha256-5Q33JOtIj/AUesMJnSA5sbbvlXaSGK6oPp2+Vcr6T/0=')
+                .nonce('SCRIPTNONCE')
+                .load(),
+            IL.js('/test/2.js')
+                .crossOrigin('anonymous')
+                .integrity('sha256-ePTZZJwNdtIpYpMC1lS5DlZXqSrnY8XumUmXaec6cQE=')
+                .nonce('SCRIPTNONCE')
+                .load(),
+            IL.js('/test/1.js')
+                .crossOrigin('anonymous')
+                .integrity('sha256-5Q33JOtIj/AUesMJnSA5sbbvlXaSGK6oPp2+Vcr6T/0=')
+                .nonce('SCRIPTNONCE')
+                .load(),
+            IL.css('/test/1.css')
+                .crossOrigin('anonymous')
+                .integrity('sha256-pkBR/9JymuVcKM4WQWTD/pd052ivftYyugKvT5B+yhQ=')
+                .nonce('STYLENONCE')
+                .load(),
+            IL.css('/test/2.css')
+                .crossOrigin('anonymous')
+                .integrity('sha256-DDG5REodHtRP/Gwh0xNtEIxbxDCovZ2OVE19zy5lqv8=')
+                .nonce('STYLENONCE')
+                .load(),
+        ])
+            .then((e) => console.log('ALL LOADED', e))
+            .catch((e) => console.log('ERROR', e))
+
+    </script>
+    <style nonce="STYLENONCE">h1 { display: none; }</style>
+</head>
+<body>
+<h1 id="css1">1.css loaded</h1>
+<h1 id="css2">2.css loaded</h1>
+</body>
+</html>
