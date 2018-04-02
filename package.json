@@ -1,10 +1,24 @@
 {
-  "dependencies": {
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.11.1",
     "ts-loader": "^4.1.0",
-    "tslint": "^5.9.1",
-    "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.1",
     "webpack": "^4.4.1",
     "webpack-cli": "^2.0.13"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  },
+  "scripts": {
+    "build": "yarn && webpack",
+    "dev": "webpack --watch --mode=development",
+    "fmt": "prettier --write src/*",
+    "testbed": "webpack --mode=development --output=testbed/dist/loader.js && cd testbed && python -m SimpleHTTPServer 8081"
   }
 }

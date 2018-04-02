@@ -1,7 +1,8 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: './src/loader.ts',
+  mode: 'production',
   module: {
     rules: [
       {
@@ -18,6 +19,6 @@ module.exports = {
   output: {
     filename: 'loader.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'IL'
+    library: 'DYAL'
   }
 }

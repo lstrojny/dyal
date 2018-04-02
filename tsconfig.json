@@ -6,7 +6,8 @@
     "allowUnreachableCode": false,
     "alwaysStrict": true,
     "noImplicitReturns": true,
-    "module": "es6",
+    "target": "es5",
+    "module": "esnext",
     "lib": [
       "es5",
       "es2015.promise",
