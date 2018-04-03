@@ -1,4 +1,7 @@
 {
+  "name": "dyal",
+  "version": "0.0.3",
+  "repository": "https://github.com/lstrojny/dyal",
   "license": "MIT",
   "devDependencies": {
     "prettier": "^1.11.1",
@@ -19,6 +22,7 @@
     "build": "yarn && webpack",
     "dev": "webpack --watch --mode=development",
     "fmt": "prettier --write src/*",
-    "testbed": "webpack --mode=development --output=testbed/dist/loader.js && cd testbed && python -m SimpleHTTPServer 8081"
+    "testbed": "webpack --mode=development --output=testbed/dist/loader.js && cd testbed && python -m SimpleHTTPServer 8081",
+    "publish": "yarn && webpack && npm publish"
   }
 }
