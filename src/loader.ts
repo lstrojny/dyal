@@ -19,7 +19,7 @@ function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr)
     }
   }
 
-  api.load = (node: Node = document.head, doc: Document = document): Promise<Asset> => {
+  api.load = (node: Node | null = document.head, doc: Document = document): Promise<Asset> => {
     const element = doc.createElement(srcType)
 
     const promise = new Promise<Asset>((resolve, reject): void => {
@@ -36,7 +36,7 @@ function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr)
 
     element.setAttribute(srcAttr, attributes.resource)
 
-    node.appendChild(element)
+    node!.appendChild(element)
 
     return promise
   }
