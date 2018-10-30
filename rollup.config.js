@@ -5,7 +5,8 @@ export default {
     output: {
         name: 'DYAL',
         file: 'dist/loader.js',
-        format: 'iife'
+        format: 'iife',
+        strict: false
     },
     input: './src/loader.ts',
     plugins: [typescript(), uglify()]
