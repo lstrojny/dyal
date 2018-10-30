@@ -6,6 +6,7 @@ type AttributeMap = { resource: string; [key: string]: AttributeType }
 type Asset = AttributeMap & { srcAttr: SourceAttr; srcType: SourceType }
 
 const MIME_TYPE_PREFIX = 'text/'
+const RESOURCE = 'resource'
 const BaseAttributes = { integrity: null, nonce: null, crossOrigin: null }
 const LinkAttributes = { type: MIME_TYPE_PREFIX + 'css', rel: 'stylesheet' }
 const ScriptAttributes = { type: MIME_TYPE_PREFIX + 'javascript', defer: false, async: false }
@@ -28,18 +29,18 @@ function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr)
     const element = doc.createElement(srcType)
 
     const promise = new Promise<Asset>((resolve: (asset: Asset) => void, reject: (asset: Asset) => void): void => {
-      const asset = { ...attributes, [srcAttr]: attributes['resource'], srcAttr, srcType }
+      const asset = { ...attributes, [srcAttr]: attributes[RESOURCE], srcAttr, srcType }
       addEventListener(element, 'load', resolve, asset)
       addEventListener(element, 'error', reject, asset)
     })
 
     for (const key in attributes) {
-      if (key !== 'resource' && attributes[key] !== null) {
+      if (key !== RESOURCE && attributes[key] !== null) {
         element.setAttribute(key, attributes[key]!.toString())
       }
     }
 
-    element.setAttribute(srcAttr, attributes.resource)
+    element.setAttribute(srcAttr, attributes[RESOURCE])
 
     node!.appendChild(element)
 
