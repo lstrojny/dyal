@@ -5,9 +5,14 @@ type AttributeType = string | null | boolean
 type AttributeMap = { resource: string; [key: string]: AttributeType }
 type Asset = AttributeMap & { srcAttr: SourceAttr; srcType: SourceType }
 
+const MIME_TYPE_PREFIX = 'text/'
 const BaseAttributes = { integrity: null, nonce: null, crossOrigin: null }
-const LinkAttributes = { type: 'text/css', rel: 'stylesheet' }
-const ScriptAttributes = { type: 'text/javascript', defer: false, async: false }
+const LinkAttributes = { type: MIME_TYPE_PREFIX + 'css', rel: 'stylesheet' }
+const ScriptAttributes = { type: MIME_TYPE_PREFIX + 'javascript', defer: false, async: false }
+
+const addEventListener = (element: Element, type: string, cb: Function, asset: Asset): void => {
+  element.addEventListener(type, cb.bind(null, asset))
+}
 
 function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr): Api {
   const api = {} as Api
@@ -22,10 +27,10 @@ function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr)
   api.load = (node: Node | null = document.head, doc: Document = document): Promise<Asset> => {
     const element = doc.createElement(srcType)
 
-    const promise = new Promise<Asset>((resolve, reject): void => {
+    const promise = new Promise<Asset>((resolve: (asset: Asset) => void, reject: (asset: Asset) => void): void => {
       const asset = { ...attributes, [srcAttr]: attributes['resource'], srcAttr, srcType }
-      element.addEventListener('load', resolve.bind(null, asset))
-      element.addEventListener('error', reject.bind(null, asset))
+      addEventListener(element, 'load', resolve, asset)
+      addEventListener(element, 'error', reject, asset)
     })
 
     for (const key in attributes) {

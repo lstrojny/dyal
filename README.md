@@ -12,7 +12,7 @@
  * Familiar: Sane defaults to not offer too many surprises
  * Recognizable: offers a Promise based API for asynchronicity
 
-**Full disclosure:** DYAL is mostly an excuse for me to learn some TypeScript but maybe it’s also useful.
+**Full disclosure:** `DYAL` is mostly an excuse for me to learn some TypeScript but maybe it’s also useful.
 
 ## Tooling
  * `yarn install` will the relevant development dependencies
@@ -20,4 +20,4 @@
  * `yarn testbed` will build a development version and run a webserver on `localhost:8081` to serve a testbed (open the
  developer console to see if things work)
  * `yarn fmt` will format all the code
- * `yarn dev` will run webpack in watch mode    
+ * `yarn dev` will run rollup in watch mode
