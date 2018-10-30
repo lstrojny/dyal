@@ -7,10 +7,10 @@
  * If an asset fails to load, retry
 
 ### Design goals
- * Compact: halfway small so to be directly included in each page: it’s 1.6K right now and it’s likely gonna shrink.
+ * **Compact**: halfway small so to be directly included in each page: it’s 1.6K right now and it’s likely gonna shrink.
    This is why it does not have (and should not have) any external runtime dependencies
- * Familiar: Sane defaults to not offer too many surprises
- * Recognizable: offers a Promise based API for asynchronicity
+ * **Familiar**: Sane defaults to not offer too many surprises
+ * **Recognizable**: offers a Promise based API for asynchronicity
 
 **Full disclosure:** `DYAL` is mostly an excuse for me to learn some TypeScript but maybe it’s also useful.
 
