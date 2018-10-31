@@ -21,8 +21,9 @@
     "build": "yarn && rollup -c",
     "dev": "rollup -c --watch",
     "fmt": "prettier --write src/*",
-    "testbed": "rollup -c --file=testbed/dist/loader.js && cd testbed && python -m SimpleHTTPServer 8081",
-    "publish": "yarn && rollup -c && npm publish"
+    "testbed": "yarn build && yarn testbed-inline && cd testbed && python -m SimpleHTTPServer 8081",
+    "publish": "yarn && rollup -c && npm publish",
+    "testbed-inline":  "perl -p0e \"s@(// LOADER BEGIN).*?(// LOADER END)@\\1\\n`cat dist/loader.js`\\n\\2@s\" testbed/index.in.html > testbed/index.html"
   },
   "dependencies": {
     "rollup-plugin-typescript": "^1.0.0",

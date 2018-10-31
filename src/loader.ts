@@ -22,7 +22,7 @@ const mergeObjects = <T extends Object>(...objects: Object[]): T => {
   for (let source of objects) {
     for (let key in source) {
       if (source.hasOwnProperty(key)) {
-        (<any>target)[key] = (<any>source)[key]
+        ;(<any>target)[key] = (<any>source)[key]
       }
     }
   }
@@ -67,6 +67,8 @@ function api(attributes: AttributeMap, srcType: SourceType, srcAttr: SourceAttr)
   return api
 }
 
-export const js = (resource: string): Api => api(mergeObjects(BaseAttributes, ScriptAttributes, { resource }), 'script', 'src')
-export const css = (resource: string): Api => api(mergeObjects(BaseAttributes, LinkAttributes, { resource }), 'link', 'href')
+export const js = (resource: string): Api =>
+  api(mergeObjects(BaseAttributes, ScriptAttributes, { resource }), 'script', 'src')
+export const css = (resource: string): Api =>
+  api(mergeObjects(BaseAttributes, LinkAttributes, { resource }), 'link', 'href')
 export const asset = (asset: Asset): Api => api(asset, asset.srcType, asset.srcAttr)
